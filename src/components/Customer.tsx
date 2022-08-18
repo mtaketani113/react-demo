@@ -1,6 +1,10 @@
 import {useEffect, useState} from 'react';
 import { Table } from 'semantic-ui-react'
 
+import {
+	Container,
+  } from 'semantic-ui-react'
+
 const Customer = () => {
 	
 	const [customers, setCustomers] = useState<any>(null);
@@ -39,7 +43,7 @@ const Customer = () => {
 		}
         
 		return (
-			<article>
+			<Container text style={{ marginTop: '7em' }}>
 				<Table celled>
 					<Table.Header>
 						<Table.Row>
@@ -53,7 +57,7 @@ const Customer = () => {
 						{rows}
 					</Table.Body>
 				</Table>
-			</article>
+			</Container>
 		);
 	}
 }
