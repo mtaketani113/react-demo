@@ -63,7 +63,7 @@ const Customer = () => {
     }, []);
 
 	if( customers == null ) {
-		return (<article>ロード中</article>);
+		return (<Form loading></Form>);
 	}
 	else {
 		const rows = [];
