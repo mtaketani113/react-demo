@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import { Table } from 'semantic-ui-react'
 
 const Customer = () => {
 	
@@ -29,29 +30,29 @@ const Customer = () => {
 		const rows = [];
 		for(var i = 0; i < customers.length; i++) {
 			let customer = customers[i];
-			rows.push(<tr key={customer.id}>
-				<td>{customer.id}</td>
-				<td>{customer.name}</td>
-				<td>{customer.post}</td>
-				<td>{customer.address}</td>
-			</tr>);
+			rows.push(<Table.Row key={customer.id}>
+				<Table.Cell>{customer.id}</Table.Cell>
+				<Table.Cell>{customer.name}</Table.Cell>
+				<Table.Cell>{customer.post}</Table.Cell>
+				<Table.Cell>{customer.address}</Table.Cell>
+			</Table.Row>);
 		}
         
 		return (
 			<article>
-				<table>
-					<thead>
-						<tr>
-							<th>ID</th>
-							<th>名前</th>
-							<th>郵便番号</th>
-							<th>住所</th>
-						</tr>
-					</thead>
-					<tbody>
+				<Table celled>
+					<Table.Header>
+						<Table.Row>
+							<Table.HeaderCell>ID</Table.HeaderCell>
+							<Table.HeaderCell>名前</Table.HeaderCell>
+							<Table.HeaderCell>郵便番号</Table.HeaderCell>
+							<Table.HeaderCell>住所</Table.HeaderCell>
+						</Table.Row>
+					</Table.Header>
+					<Table.Body>
 						{rows}
-					</tbody>
-				</table>
+					</Table.Body>
+				</Table>
 			</article>
 		);
 	}
