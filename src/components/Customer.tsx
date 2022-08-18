@@ -70,10 +70,10 @@ const Customer = () => {
 				<Table.Cell>{customer.name}</Table.Cell>
 				<Table.Cell>{customer.post}</Table.Cell>
 				<Table.Cell>{customer.address}</Table.Cell>
-				<Table.Cell>
+				<Table.Cell textAlign='center'>
 					<ModalCustomerRegister loadCustomers={() => loadCustomers()} customer={customer} />
 				</Table.Cell>
-				<Table.Cell>
+				<Table.Cell textAlign='center'>
 					<Icon link name='trash alternate outline' onClick={() => deleteCustomer(customer.id)} />
 				</Table.Cell>
 			</Table.Row>);
