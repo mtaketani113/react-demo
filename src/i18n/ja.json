@@ -5,7 +5,12 @@
       "address":"住所",
       "add":    "追加",
       "change": "変更",
-      "delete_messaeg": "削除しますか?"
+      "delete_messaeg": "削除しますか?",
+      "add_title": "顧客登録",
+      "change_title": "顧客更新",
+      "info": "登録情報",
+      "register": "登録",
+      "close": "閉じる"
     },
     "header": {
         "menu": {

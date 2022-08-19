@@ -65,10 +65,10 @@ const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
 	let customerAddress:any;
 
 	if(customer == null || customer.id == null || customer.id === ''){
-		title = '顧客登録';
+		title = t("customer.add_title");
 		buttonName = t("customer.add");
 	}else{
-		title = '顧客更新';
+		title = t("customer.change_title");
 		buttonName = t("customer.change");
 		customerName = customer.name;
 		customerPost = customer.post;
@@ -87,29 +87,29 @@ const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
       <Modal.Content image>
         <Image size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' wrapped />
         <Modal.Description>
-          <Header>登録情報</Header>
+          <Header>{t("customer.info")}</Header>
 		  <Form>
 			<Form.Field>
-				<label>名前</label>
-				<input id="customer_name" placeholder='名前' defaultValue={customerName}/>
+				<label>{t("customer.name")}</label>
+				<input id="customer_name" placeholder={t("customer.name")} defaultValue={customerName}/>
 			</Form.Field>
 			<Form.Field>
-				<label>郵便番号</label>
-				<input id="customer_post" placeholder='郵便番号' defaultValue={customerPost}/>
+				<label>{t("customer.post")}</label>
+				<input id="customer_post" placeholder={t("customer.post")} defaultValue={customerPost}/>
 			</Form.Field>
 			<Form.Field>
-				<label>住所</label>
-				<input id="customer_address" placeholder='住所' defaultValue={customerAddress}/>
+				<label>{t("customer.address")}</label>
+				<input id="customer_address" placeholder={t("customer.address")} defaultValue={customerAddress}/>
 			</Form.Field>
 		  </Form>
         </Modal.Description>
       </Modal.Content>
       <Modal.Actions>
         <Button color='black' onClick={() => setOpen(false)}>
-          閉じる
+		{t("customer.close")}
         </Button>
         <Button
-          content="登録"
+          content={t("customer.register")}
           labelPosition='right'
           icon='checkmark'
           onClick={() => register()}

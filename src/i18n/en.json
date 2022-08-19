@@ -5,7 +5,12 @@
       "address":"Address",
       "add":    "Add",
       "change": "Change",
-      "delete_messaeg": "Delete?"
+      "delete_messaeg": "Delete?",
+      "add_title": "Add",
+      "change_title": "Change",
+      "info": "Info",
+      "register": "Register",
+      "close": "Close"
     },
     "header": {
         "menu": {
