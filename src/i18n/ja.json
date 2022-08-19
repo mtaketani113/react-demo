@@ -1,0 +1,20 @@
+{
+    "customer": {
+      "name":   "名前",
+      "post":   "郵便番号",
+      "address":"住所",
+      "add":    "追加",
+      "change": "変更",
+      "delete_messaeg": "削除しますか?"
+    },
+    "header": {
+        "menu": {
+            "title":    "React デモ",
+            "home":     "ホーム",
+            "customer": "顧客一覧"
+        },
+        "language":"言語",
+        "en":"英語",
+        "ja":"日本語"
+    }
+}

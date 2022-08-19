@@ -1,8 +1,12 @@
 import {useState} from 'react';
 import { Button, Header, Image, Modal, Form } from 'semantic-ui-react'
 
+import { useTranslation } from "react-i18next";
+
 type Props = { loadCustomers:() => void, customer:any};
 const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
+
+	const { t } = useTranslation();
 
 	const [open, setOpen] = useState<boolean>(false);
 	
@@ -62,10 +66,10 @@ const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
 
 	if(customer == null || customer.id == null || customer.id === ''){
 		title = '顧客登録';
-		buttonName = '追加';
+		buttonName = t("customer.add");
 	}else{
 		title = '顧客更新';
-		buttonName = '変更';
+		buttonName = t("customer.change");
 		customerName = customer.name;
 		customerPost = customer.post;
 		customerAddress = customer.address;

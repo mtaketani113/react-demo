@@ -1,8 +1,11 @@
 import {useEffect, useState} from 'react';
 import { Container, Table, Form, Icon } from 'semantic-ui-react';
 import {ModalCustomerRegister} from './index';
+import { useTranslation } from "react-i18next";
 
 const Customer = () => {
+
+	const { t } = useTranslation();
 	
 	const [customers, setCustomers] = useState<any>(null);
 	
@@ -20,27 +23,8 @@ const Customer = () => {
 		});
 	};
 
-	// const addCustomer = () => {
-    //     let endpoint = PRONET_CONTEXT_ENDPOINT + "api/customer/new";
-	// 	let name = document.querySelector<HTMLInputElement>("#customer_name")!.value;
-	// 	let post = document.querySelector<HTMLInputElement>("#customer_post")!.value;
-	// 	let address = document.querySelector<HTMLInputElement>("#customer_address")!.value;
-	// 	fetch(endpoint, {cache:"no-cache", method:"PUT",
-	// 		headers: {
-	// 			'Content-Type': 'application/json; charset=utf-8'
-	// 		},
-	// 		body : JSON.stringify({name : name, post: post, address: address})})
-	// 	.then( (response)=>{
-	// 		loadCustomers()} )
-	// 	.catch((reason)=>{
-	// 		console.log(reason);
-	// 	}).finally(()=>{
-	// 		setOpen(false);
-	// 	});
-	// };
-
 	const deleteCustomer = (id: string) => {
-		if(window.confirm("削除しますか？")){
+		if(window.confirm(t("customer.delete_messaeg"))){
 			let endpoint = PRONET_CONTEXT_ENDPOINT + "api/customer/delete/" + id;
 			fetch(endpoint, {cache:"no-cache", method:"DELETE"})
 			.then( (response)=>{
@@ -85,9 +69,9 @@ const Customer = () => {
 					<Table.Header>
 						<Table.Row>
 							<Table.HeaderCell>ID</Table.HeaderCell>
-							<Table.HeaderCell>名前</Table.HeaderCell>
-							<Table.HeaderCell>郵便番号</Table.HeaderCell>
-							<Table.HeaderCell>住所</Table.HeaderCell>
+							<Table.HeaderCell>{t("customer.name")}</Table.HeaderCell>
+							<Table.HeaderCell>{t("customer.post")}</Table.HeaderCell>
+							<Table.HeaderCell>{t("customer.address")}</Table.HeaderCell>
 							<Table.HeaderCell></Table.HeaderCell>
 							<Table.HeaderCell></Table.HeaderCell>
 						</Table.Row>

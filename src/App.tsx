@@ -6,6 +6,8 @@ import {BrowserRouter, Routes , Route} from "react-router-dom";
 
 import {HeaderMenu, FooterMenu} from './components/index';
 
+import "./i18n/configs"
+
 function App() {
   return (
     <React.Fragment>
