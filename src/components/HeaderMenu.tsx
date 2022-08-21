@@ -19,26 +19,26 @@ const HeaderMenu = ({accessToken}:Props) => {
 		i18n.changeLanguage(lang);
 	}
 
-  // const CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
+  const CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
 
-  // const loadUser = () => {
-  //   let endpoint = CONTEXT_ENDPOINT + "api/user";
-  //   fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
-  //     headers: {
-  //       Authorization: `Bearer ${accessToken}`
-  //     }})
-  //     .then( (response)=>{
-  //       return response.json()} )
-  //     .then( (json)=>{
-  //       setUser(json);
-  //     }).catch((reason)=>{
-  //       console.log(reason);
-  //     });
-  //   };
+  const loadUser = () => {
+    let endpoint = CONTEXT_ENDPOINT + "api/user?accessToken=" + accessToken;
+    fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }})
+      .then( (response)=>{
+        return response.json()} )
+      .then( (json)=>{
+        setUser(json);
+      }).catch((reason)=>{
+        console.log(reason);
+      });
+    };
 
-  // useEffect(() => {
-  //   loadUser();
-  // }, []);
+  useEffect(() => {
+    loadUser();
+  }, []);
 
   return(
     <Menu fixed='top' inverted>
@@ -59,7 +59,7 @@ const HeaderMenu = ({accessToken}:Props) => {
           </Dropdown.Menu>
         </Dropdown>
         </Menu.Menu>
-        <Menu.Item as='a' href='/'></Menu.Item>
+        <Menu.Item as='a' href='/'>{user == null? "": user.name}</Menu.Item>
       </Container>
     </Menu>
   )
