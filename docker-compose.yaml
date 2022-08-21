@@ -21,7 +21,7 @@ services:
 
 # springアプリケーションのサービス
   spring:
-    image: mtaketani113/spring-boot-demo:0.0.4
+    image: mtaketani113/spring-boot-demo:0.0.5
     container_name: "spring"
     restart: always
     ports:
@@ -40,7 +40,7 @@ services:
     volumes:
       - ./:/app
     working_dir: /app
-    command: sh -c "npm install && npm run start_docker"
+    command: sh -c "npm install --legacy-peer-deps && npm run start_docker"
     ports:
       - '3000:3000'
     depends_on:
