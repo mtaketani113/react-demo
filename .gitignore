@@ -27,3 +27,5 @@ yarn.lock
 
 my-workbook/
 mysql/settings/
+
+.env
