@@ -17,7 +17,6 @@ function App() {
   const clientId:string = process.env.REACT_APP_CLIENT_ID == null? "": process.env.REACT_APP_CLIENT_ID ;
   const [cookies, setCookie] = useCookies(["react_access_token"]);
   const [accessToken, setAccessToken] = useState<string>(cookies.react_access_token);
-  console.log(accessToken);
   return (
     <React.Fragment>
       {accessToken == null ? (
@@ -26,7 +25,6 @@ function App() {
                buttonText="LOGIN WITH GOOGLE"
                onSuccess={(response) => {
                 if ('accessToken' in response) {
-                  console.log(response);
                   setAccessToken(response.accessToken);
                   setCookie("react_access_token", response.accessToken);
                 }

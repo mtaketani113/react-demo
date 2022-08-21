@@ -14,7 +14,6 @@ const Customer = ({accessToken}:Props) => {
 
 	const loadCustomers = () => {
         let endpoint = PRONET_CONTEXT_ENDPOINT + "api/customer";
-		console.log("呼び出し"+accessToken);
 		fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
 		headers: {
 			Authorization: `Bearer ${accessToken}`
