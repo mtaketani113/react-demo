@@ -3,8 +3,9 @@ import { Container, Table, Form, Icon } from 'semantic-ui-react';
 import {ModalCustomerRegister} from './index';
 import { useTranslation } from "react-i18next";
 
-const Customer = () => {
-
+type Props = {accessToken:string};
+const Customer = ({accessToken}:Props) => {
+	
 	const { t } = useTranslation();
 	
 	const [customers, setCustomers] = useState<any>(null);
@@ -13,7 +14,11 @@ const Customer = () => {
 
 	const loadCustomers = () => {
         let endpoint = PRONET_CONTEXT_ENDPOINT + "api/customer";
-		fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET"})
+		console.log("呼び出し"+accessToken);
+		fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
+		headers: {
+			Authorization: `Bearer ${accessToken}`
+		}})
 		.then( (response)=>{
 			return response.json()} )
 		.then( (json)=>{
@@ -26,7 +31,10 @@ const Customer = () => {
 	const deleteCustomer = (id: string) => {
 		if(window.confirm(t("customer.delete_messaeg"))){
 			let endpoint = PRONET_CONTEXT_ENDPOINT + "api/customer/delete/" + id;
-			fetch(endpoint, {cache:"no-cache", method:"DELETE"})
+			fetch(endpoint, {cache:"no-cache", method:"DELETE",
+			headers: {
+				Authorization: `Bearer ${accessToken}`
+			}})
 			.then( (response)=>{
 				loadCustomers()} )
 			.catch((reason)=>{
@@ -40,6 +48,7 @@ const Customer = () => {
 
     useEffect(() => {
         loadCustomers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
 	if( customers == null ) {
@@ -55,7 +64,7 @@ const Customer = () => {
 				<Table.Cell>{customer.post}</Table.Cell>
 				<Table.Cell>{customer.address}</Table.Cell>
 				<Table.Cell textAlign='center'>
-					<ModalCustomerRegister loadCustomers={() => loadCustomers()} customer={customer} />
+					<ModalCustomerRegister loadCustomers={() => loadCustomers()} customer={customer} accessToken={accessToken} />
 				</Table.Cell>
 				<Table.Cell textAlign='center'>
 					<Icon link name='trash alternate outline' onClick={() => deleteCustomer(customer.id)} />
@@ -80,7 +89,7 @@ const Customer = () => {
 						{rows}
 					</Table.Body>
 				</Table>
-				<ModalCustomerRegister loadCustomers={() => loadCustomers()} customer={null} />
+				<ModalCustomerRegister loadCustomers={() => loadCustomers()} customer={null} accessToken={accessToken} />
 			</Container>
 		);
 	}

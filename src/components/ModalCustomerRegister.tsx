@@ -3,8 +3,8 @@ import { Button, Header, Image, Modal, Form } from 'semantic-ui-react'
 
 import { useTranslation } from "react-i18next";
 
-type Props = { loadCustomers:() => void, customer:any};
-const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
+type Props = { loadCustomers:() => void, customer:any, accessToken:string};
+const ModalCustomerRegister = ({loadCustomers, customer, accessToken}: Props) => {
 
 	const { t } = useTranslation();
 
@@ -19,7 +19,8 @@ const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
 		let address = document.querySelector<HTMLInputElement>("#customer_address")!.value;
 		fetch(endpoint, {cache:"no-cache", method:"PUT",
 			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
+				'Content-Type': 'application/json; charset=utf-8',
+				'Authorization': `Bearer ${accessToken}`
 			},
 			body : JSON.stringify({name : name, post: post, address: address})})
 		.then( (response)=>{
@@ -38,7 +39,8 @@ const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
 		let address = document.querySelector<HTMLInputElement>("#customer_address")!.value;
 		fetch(endpoint, {cache:"no-cache", method:"POST",
 			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
+				'Content-Type': 'application/json; charset=utf-8',
+				'Authorization': `Bearer ${accessToken}`
 			},
 			body : JSON.stringify({id : updateId, name : name, post: post, address: address})})
 		.then( (response)=>{
