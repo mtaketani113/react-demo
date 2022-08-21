@@ -4,16 +4,41 @@ import {
   Image,
   Menu,
 } from 'semantic-ui-react'
+import {useEffect, useState} from 'react';
 import i18n from "i18next";
 import { useTranslation } from "react-i18next";
 
-const HeaderMenu = () => {
+type Props = {accessToken:string};
+const HeaderMenu = ({accessToken}:Props) => {
 
 	const { t } = useTranslation();
+
+  const [user, setUser] = useState<any>(null);
 
   const translate = (lang :string) => {
 		i18n.changeLanguage(lang);
 	}
+
+  // const CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
+
+  // const loadUser = () => {
+  //   let endpoint = CONTEXT_ENDPOINT + "api/user";
+  //   fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
+  //     headers: {
+  //       Authorization: `Bearer ${accessToken}`
+  //     }})
+  //     .then( (response)=>{
+  //       return response.json()} )
+  //     .then( (json)=>{
+  //       setUser(json);
+  //     }).catch((reason)=>{
+  //       console.log(reason);
+  //     });
+  //   };
+
+  // useEffect(() => {
+  //   loadUser();
+  // }, []);
 
   return(
     <Menu fixed='top' inverted>
@@ -34,6 +59,7 @@ const HeaderMenu = () => {
           </Dropdown.Menu>
         </Dropdown>
         </Menu.Menu>
+        <Menu.Item as='a' href='/'></Menu.Item>
       </Container>
     </Menu>
   )

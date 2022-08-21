@@ -10,10 +10,10 @@ const Customer = ({accessToken}:Props) => {
 	
 	const [customers, setCustomers] = useState<any>(null);
 	
-	const PRONET_CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
+	const CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
 
 	const loadCustomers = () => {
-        let endpoint = PRONET_CONTEXT_ENDPOINT + "api/customer";
+        let endpoint = CONTEXT_ENDPOINT + "api/customer";
 		fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
 		headers: {
 			Authorization: `Bearer ${accessToken}`
@@ -29,7 +29,7 @@ const Customer = ({accessToken}:Props) => {
 
 	const deleteCustomer = (id: string) => {
 		if(window.confirm(t("customer.delete_messaeg"))){
-			let endpoint = PRONET_CONTEXT_ENDPOINT + "api/customer/delete/" + id;
+			let endpoint = CONTEXT_ENDPOINT + "api/customer/delete/" + id;
 			fetch(endpoint, {cache:"no-cache", method:"DELETE",
 			headers: {
 				Authorization: `Bearer ${accessToken}`

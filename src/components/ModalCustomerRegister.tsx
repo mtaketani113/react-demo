@@ -10,10 +10,10 @@ const ModalCustomerRegister = ({loadCustomers, customer, accessToken}: Props) =>
 
 	const [open, setOpen] = useState<boolean>(false);
 	
-	const PRONET_CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
+	const CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
 
 	const addCustomer = () => {
-        let endpoint = PRONET_CONTEXT_ENDPOINT + "api/customer/new";
+        let endpoint = CONTEXT_ENDPOINT + "api/customer/new";
 		let name = document.querySelector<HTMLInputElement>("#customer_name")!.value;
 		let post = document.querySelector<HTMLInputElement>("#customer_post")!.value;
 		let address = document.querySelector<HTMLInputElement>("#customer_address")!.value;
@@ -33,7 +33,7 @@ const ModalCustomerRegister = ({loadCustomers, customer, accessToken}: Props) =>
 	};
 
 	const updateCustomer = (updateId:string) => {
-        let endpoint = PRONET_CONTEXT_ENDPOINT + "api/customer/update";
+        let endpoint = CONTEXT_ENDPOINT + "api/customer/update";
 		let name = document.querySelector<HTMLInputElement>("#customer_name")!.value;
 		let post = document.querySelector<HTMLInputElement>("#customer_post")!.value;
 		let address = document.querySelector<HTMLInputElement>("#customer_address")!.value;
