@@ -21,7 +21,7 @@ services:
 
 # springアプリケーションのサービス
   spring:
-    image: mtaketani113/spring-boot-demo:0.0.5
+    image: mtaketani113/spring-boot-demo:0.0.6
     container_name: "spring"
     restart: always
     ports:
@@ -34,6 +34,8 @@ services:
     working_dir: /srv
     environment:
       DATASOURCE_URL: "jdbc:mysql://db:3306/demo"
+      HTTP_PROXY_HOST: ${HTTP_PROXY_HOST}
+      HTTP_PROXY_PORT: ${HTTP_PROXY_PORT}
   app:
     container_name: react-web-app
     image: node:17-alpine
