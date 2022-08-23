@@ -2,13 +2,14 @@ import {useEffect, useState} from 'react';
 import { Container, Table, Form, Icon } from 'semantic-ui-react';
 import {ModalCustomerRegister} from './index';
 import { useTranslation } from "react-i18next";
+import { CustomerEntity } from "./entity/CustomerEntity";
 
 type Props = {accessToken:string};
 const Customer = ({accessToken}:Props) => {
 	
 	const { t } = useTranslation();
 	
-	const [customers, setCustomers] = useState<any>(null);
+	const [customers, setCustomers] = useState<Array<CustomerEntity> | null>(null);
 	
 	const CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
 
