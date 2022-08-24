@@ -7,13 +7,14 @@ import {
 import {useEffect, useState} from 'react';
 import i18n from "i18next";
 import { useTranslation } from "react-i18next";
+import { UserEntity } from './entity/UserEntity';
 
 type Props = {accessToken:string};
 const HeaderMenu = ({accessToken}:Props) => {
 
 	const { t } = useTranslation();
 
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<UserEntity|null>(null);
 
   const translate = (lang :string) => {
 		i18n.changeLanguage(lang);
@@ -30,6 +31,7 @@ const HeaderMenu = ({accessToken}:Props) => {
       .then( (response)=>{
         return response.json()} )
       .then( (json)=>{
+        console.log(json);
         setUser(json);
       }).catch((reason)=>{
         console.log(reason);
@@ -60,7 +62,9 @@ const HeaderMenu = ({accessToken}:Props) => {
           </Dropdown.Menu>
         </Dropdown>
         </Menu.Menu>
-        <Menu.Item as='a' href='/'>{user == null? "": user.name}</Menu.Item>
+        <Menu.Item as='a' href='/'>
+          <Image src={user == null? "": user.picture} avatar />
+          {user == null? "": user.name}</Menu.Item>
       </Container>
     </Menu>
   )
