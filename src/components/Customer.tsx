@@ -3,6 +3,7 @@ import { Container, Table, Form, Icon } from 'semantic-ui-react';
 import {ModalCustomerRegister} from './index';
 import { useTranslation } from "react-i18next";
 import { CustomerEntity } from "./entity/CustomerEntity";
+import axios from 'axios';
 
 type Props = {accessToken:string};
 const Customer = ({accessToken}:Props) => {
@@ -15,17 +16,13 @@ const Customer = ({accessToken}:Props) => {
 
 	const loadCustomers = () => {
         let endpoint = CONTEXT_ENDPOINT + "api/customer";
-		fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
-		headers: {
-			Authorization: `Bearer ${accessToken}`
-		}})
-		.then( (response)=>{
-			return response.json()} )
-		.then( (json)=>{
-			setCustomers(json);
-		}).catch((reason)=>{
-			console.log(reason);
-		});
+		axios.get(endpoint, {
+				headers: {
+					Authorization: `Bearer ${accessToken}`
+				}
+			}).then(res => {
+            setCustomers(res.data)
+        });
 	};
 
 	const deleteCustomer = (id: string) => {
