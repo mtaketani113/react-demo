@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
-import {Top, Customer} from './components/index';
+import {Top, Customer, Map} from './components/index';
 import './App.css';
 
 import {BrowserRouter, Routes , Route} from "react-router-dom";
@@ -38,6 +38,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Top />} />
                 <Route path="/customer" element={<Customer accessToken={accessToken} />} />
+                <Route path="/map" element={<Map />} />
               </Routes>
             </BrowserRouter><FooterMenu /></>
             )}

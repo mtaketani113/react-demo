@@ -51,8 +51,8 @@ const HeaderMenu = ({accessToken}:Props) => {
           {t("header.menu.title")}
         </Menu.Item>
         <Menu.Item as='a' href='/'>{t("header.menu.home")}</Menu.Item>
-
         <Menu.Item as='a' href='/customer'>{t("header.menu.customer")}</Menu.Item>
+        <Menu.Item as='a' href='/map'>Map</Menu.Item>
 
         <Menu.Menu position='right'>
         <Dropdown item simple text={t("header.language")}>
