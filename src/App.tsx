@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState} from 'react';
-import {Top, Customer, Map} from './components/index';
+import {Top, Customer, Map, Files} from './components/index';
 import './App.css';
 
 import {BrowserRouter, Routes , Route} from "react-router-dom";
@@ -39,6 +39,7 @@ function App() {
                 <Route path="/" element={<Top />} />
                 <Route path="/customer" element={<Customer accessToken={accessToken} />} />
                 <Route path="/map" element={<Map />} />
+                <Route path="/files" element={<Files />} />
               </Routes>
             </BrowserRouter><FooterMenu /></>
             )}
