@@ -34,7 +34,8 @@ function App() {
                cookiePolicy={'single_host_origin'}
             />
             ) : (
-              <><HeaderMenu accessToken={accessToken} /><BrowserRouter>
+              <><HeaderMenu accessToken={accessToken}
+                 setCookie={setCookie} setAccessToken={setAccessToken} /><BrowserRouter>
               <Routes>
                 <Route path="/" element={<Top />} />
                 <Route path="/customer" element={<Customer accessToken={accessToken} />} />

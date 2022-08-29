@@ -9,8 +9,9 @@ import i18n from "i18next";
 import { useTranslation } from "react-i18next";
 import { UserEntity } from './entity/UserEntity';
 
-type Props = {accessToken:string};
-const HeaderMenu = ({accessToken}:Props) => {
+type Props = {accessToken:string, setCookie:(name:"react_access_token", value:any) => void
+                , setAccessToken:(accessToken:any) => void};
+const HeaderMenu = ({accessToken, setCookie, setAccessToken}:Props) => {
 
 	const { t } = useTranslation();
 
@@ -22,20 +23,21 @@ const HeaderMenu = ({accessToken}:Props) => {
 
   const CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
 
-  const loadUser = () => {
+  const loadUser = async () => {
     let endpoint = CONTEXT_ENDPOINT + "api/user?accessToken=" + accessToken;
-    fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
+    const response = await fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
       headers: {
         Authorization: `Bearer ${accessToken}`
       }})
-      .then( (response)=>{
-        return response.json()} )
-      .then( (json)=>{
-        console.log(json);
-        setUser(json);
-      }).catch((reason)=>{
-        console.log(reason);
-      });
+      
+      if (response.status === 401) {
+        //Cookie削除
+        setCookie("react_access_token", null);
+        setAccessToken(null);
+      }else{
+        const json = await response.json();
+        setUser(json);  
+      }
     };
 
   useEffect(() => {
