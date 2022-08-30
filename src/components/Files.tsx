@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DropzoneRootProps, useDropzone } from 'react-dropzone';
-import { Icon, SemanticICONS } from 'semantic-ui-react';
+import { Icon, SemanticICONS, List } from 'semantic-ui-react';
 
 const baseStyle = {
   display: 'flex',
@@ -32,16 +32,54 @@ interface FileForDropZone extends File{
   preview?: string;
 }
 
-const Files = () => {
+interface IFile{
+  id: string,
+  fileName: string
+
+}
+
+type Props = {accessToken:string};
+const Files = ({accessToken}:Props) => {
 
   const [files, setFiles] = useState<Array<FileForDropZone>>([]);
-
+  const [fileList, setFileList] = useState<Array<IFile>>([]);
+  const CONTEXT_ENDPOINT = "http://localhost:8080/demo/";
   const onDrop = useCallback((acceptedFiles: Array<FileForDropZone>) => {
-    setFiles(acceptedFiles.map(file => Object.assign(file, {
-      preview: URL.createObjectURL(file)
-    })));
     console.log(acceptedFiles);
+    let endpoint = CONTEXT_ENDPOINT + "api/file";
+
+    acceptedFiles.forEach((file) =>{
+      let formData = new FormData();
+      formData.append('fileDatas', file);
+      fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }, body : formData}).then(response => {
+        setFiles(acceptedFiles.map(file => Object.assign(file, {
+          preview: URL.createObjectURL(file)
+        })));
+        loadfileList();
+      });
+    });
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    loadfileList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const loadfileList = ()=>{
+    let endpoint = CONTEXT_ENDPOINT + "api/file";
+    fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }}).then((response)=>{ return response.json(); })
+    .then((json: any) =>{
+      setFileList(json);
+    })
+  }
 
   const {
     getRootProps,
@@ -64,9 +102,9 @@ const Files = () => {
     isDragAccept
   ]);
 
-  const thumbs = files.map(file => {
+  const thumbs = fileList.map((file: IFile) => {
 
-    let extend:string | undefined = file.name.split('.').pop();
+    let extend:string | undefined = file.fileName.split('.').pop();
     let fileClass:SemanticICONS ;
 
     if(extend === "xlsx" || extend === "xls"){
@@ -77,12 +115,12 @@ const Files = () => {
       fileClass = 'file outline';
     }
 
+    let url = "http://localhost:8080/demo/api/file/" + file.id;
     return (
-    <div key={file.name}>
-
-      <Icon name={fileClass} >{file.name}</Icon>
-      
-    </div>
+    <List.Item>
+    <a href={url}>
+      <Icon name={fileClass} />{file.fileName}
+    </a></List.Item>
   )});
 
   // clean up
@@ -98,7 +136,9 @@ const Files = () => {
         <div>Drag and drop your images here.</div>
       </div>
       <aside>
+        <List>
         {thumbs}
+        </List>
       </aside>
     </section>
     </div>

@@ -40,7 +40,7 @@ function App() {
                 <Route path="/" element={<Top />} />
                 <Route path="/customer" element={<Customer accessToken={accessToken} />} />
                 <Route path="/map" element={<Map />} />
-                <Route path="/files" element={<Files />} />
+                <Route path="/files" element={<Files  accessToken={accessToken} />} />
               </Routes>
             </BrowserRouter><FooterMenu /></>
             )}
