@@ -81,6 +81,23 @@ const Files = ({accessToken}:Props) => {
     })
   }
 
+  const deleteFile = (id: string) => {
+		if(window.confirm("削除しますか?")){
+			let endpoint = CONTEXT_ENDPOINT + "api/file/delete/" + id;
+			fetch(endpoint, {cache:"no-cache", method:"DELETE",
+			headers: {
+				Authorization: `Bearer ${accessToken}`
+			}})
+			.then( (response)=>{
+				loadfileList()} )
+			.catch((reason)=>{
+				console.log(reason);
+      })
+		}else{
+
+		}
+	};
+
   const {
     getRootProps,
     getInputProps,
@@ -118,9 +135,13 @@ const Files = ({accessToken}:Props) => {
     let url = "http://localhost:8080/demo/api/file/" + file.id;
     return (
     <List.Item>
-    <a href={url}>
-      <Icon name={fileClass} />{file.fileName}
-    </a></List.Item>
+      <div>
+        <a href={url}>
+          <Icon name={fileClass} />{file.fileName}
+        </a>
+        <Icon link name='trash alternate outline' onClick={() => deleteFile(file.id)} />
+      </div>
+    </List.Item>
   )});
 
   // clean up
