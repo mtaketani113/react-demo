@@ -8,3 +8,10 @@ CREATE TABLE IF NOT EXISTS customer (
 );
 
 INSERT INTO customer(name, post, address) VALUES('name', 'post', 'address');
+
+CREATE TABLE IF NOT EXISTS file_manager (
+    id          INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    file_name   TEXT,
+    file_data   MEDIUMBLOB,
+    PRIMARY KEY(id)
+);
