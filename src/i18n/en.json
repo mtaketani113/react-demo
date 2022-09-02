@@ -16,7 +16,9 @@
         "menu": {
             "title":    "React Demo",
             "home":     "Home",
-            "customer": "Customer"
+            "customer": "Customer",
+            "map":      "Map",
+            "file":     "File"
         },
         "language":"Language",
         "en":"English",

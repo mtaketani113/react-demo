@@ -16,7 +16,9 @@
         "menu": {
             "title":    "React デモ",
             "home":     "ホーム",
-            "customer": "顧客一覧"
+            "customer": "顧客一覧",
+            "map":      "マップ",
+            "file":     "ファイル"
         },
         "language":"言語",
         "en":"英語",
