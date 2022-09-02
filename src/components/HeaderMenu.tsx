@@ -8,6 +8,7 @@ import {useEffect, useState} from 'react';
 import i18n from "i18next";
 import { useTranslation } from "react-i18next";
 import { UserEntity } from './entity/UserEntity';
+import axios from 'axios';
 
 type Props = {accessToken:string, setCookie:(name:"react_access_token", value:any) => void
                 , setAccessToken:(accessToken:any) => void};
@@ -25,20 +26,14 @@ const HeaderMenu = ({accessToken, setCookie, setAccessToken}:Props) => {
 
   const loadUser = async () => {
     let endpoint = CONTEXT_ENDPOINT + "api/user?accessToken=" + accessToken;
-    const response = await fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
+    axios.get(endpoint, {
       headers: {
         Authorization: `Bearer ${accessToken}`
-      }})
-      
-      if (response.status === 401) {
-        //Cookie削除
-        setCookie("react_access_token", null);
-        setAccessToken(null);
-      }else{
-        const json = await response.json();
-        setUser(json);  
       }
-    };
+    }).then(res => {
+      setUser(res.data)
+    });
+  };
 
   useEffect(() => {
     loadUser();

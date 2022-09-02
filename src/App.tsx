@@ -11,12 +11,24 @@ import { GoogleLogin } from 'react-google-login';
 import { useCookies } from "react-cookie";
 
 import "./i18n/configs"
+import axios from 'axios';
 
 function App() {
 
   const clientId:string = process.env.REACT_APP_CLIENT_ID == null? "": process.env.REACT_APP_CLIENT_ID ;
   const [cookies, setCookie] = useCookies(["react_access_token"]);
-  const [accessToken, setAccessToken] = useState<string>(cookies.react_access_token);
+  const [accessToken, setAccessToken] = useState<string|null>(cookies.react_access_token);
+  axios.interceptors.response.use(
+    response => response,
+    error => {
+      if (error.response.status === 401) {
+        //Cookie削除
+        setCookie("react_access_token", null);
+        setAccessToken(null);
+      }
+      return Promise.reject(error);
+    }
+  )
   return (
     <React.Fragment>
       {accessToken == null ? (
