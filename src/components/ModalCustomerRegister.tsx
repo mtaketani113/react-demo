@@ -4,8 +4,8 @@ import { Button, Header, Image, Modal, Form } from 'semantic-ui-react'
 import { useTranslation } from "react-i18next";
 import { CustomerEntity } from "./entity/CustomerEntity";
 
-type Props = { loadCustomers:() => void, customer:CustomerEntity | null, accessToken:string};
-const ModalCustomerRegister = ({loadCustomers, customer, accessToken}: Props) => {
+type Props = { loadCustomers:() => void, customer:CustomerEntity | null};
+const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
 
 	const { t } = useTranslation();
 

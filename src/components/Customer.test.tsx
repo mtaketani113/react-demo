@@ -27,7 +27,7 @@ describe('Customer', () => {
 		 post: "post",
 		 address: "address"}],
 	  });
-    render(<Customer accessToken="token"/>);
+    render(<Customer />);
     const listElements = await screen.findAllByRole('cell');
     expect(listElements[0]).toBeInTheDocument();
   });

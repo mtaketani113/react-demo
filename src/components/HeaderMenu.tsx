@@ -10,9 +10,8 @@ import { useTranslation } from "react-i18next";
 import { UserEntity } from './entity/UserEntity';
 import axios from 'axios';
 
-type Props = {accessToken:string, setCookie:(name:"react_access_token", value:any) => void
-                , setAccessToken:(accessToken:any) => void};
-const HeaderMenu = ({accessToken, setCookie, setAccessToken}:Props) => {
+type Props = {accessToken:string};
+const HeaderMenu = ({accessToken}:Props) => {
 
 	const { t } = useTranslation();
 

@@ -38,8 +38,7 @@ interface IFile{
 
 }
 
-type Props = {accessToken:string};
-const Files = ({accessToken}:Props) => {
+const Files = () => {
 
   const [files, setFiles] = useState<Array<FileForDropZone>>([]);
   const [fileList, setFileList] = useState<Array<IFile>>([]);
@@ -51,10 +50,7 @@ const Files = ({accessToken}:Props) => {
     acceptedFiles.forEach((file) =>{
       let formData = new FormData();
       formData.append('fileDatas', file);
-      fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"POST",
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }, body : formData}).then(response => {
+      fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"POST", body : formData}).then(response => {
         setFiles(acceptedFiles.map(file => Object.assign(file, {
           preview: URL.createObjectURL(file)
         })));
@@ -72,10 +68,7 @@ const Files = ({accessToken}:Props) => {
 
   const loadfileList = ()=>{
     let endpoint = CONTEXT_ENDPOINT + "api/file";
-    fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET",
-    headers: {
-      Authorization: `Bearer ${accessToken}`
-    }}).then((response)=>{ return response.json(); })
+    fetch(endpoint, {cache:"no-cache", mode: 'cors', method:"GET"}).then((response)=>{ return response.json(); })
     .then((json: any) =>{
       setFileList(json);
     })
@@ -84,10 +77,7 @@ const Files = ({accessToken}:Props) => {
   const deleteFile = (id: string) => {
 		if(window.confirm("削除しますか?")){
 			let endpoint = CONTEXT_ENDPOINT + "api/file/delete/" + id;
-			fetch(endpoint, {cache:"no-cache", method:"DELETE",
-			headers: {
-				Authorization: `Bearer ${accessToken}`
-			}})
+			fetch(endpoint, {cache:"no-cache", method:"DELETE"})
 			.then( (response)=>{
 				loadfileList()} )
 			.catch((reason)=>{

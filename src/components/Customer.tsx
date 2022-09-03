@@ -5,8 +5,7 @@ import { useTranslation } from "react-i18next";
 import { CustomerEntity } from "./entity/CustomerEntity";
 import axios from 'axios';
 
-type Props = {accessToken:string};
-const Customer = ({accessToken}:Props) => {
+const Customer = () => {
 	
 	const { t } = useTranslation();
 	
@@ -54,7 +53,7 @@ const Customer = ({accessToken}:Props) => {
 				<Table.Cell>{customer.post}</Table.Cell>
 				<Table.Cell>{customer.address}</Table.Cell>
 				<Table.Cell textAlign='center'>
-					<ModalCustomerRegister loadCustomers={() => loadCustomers()} customer={customer} accessToken={accessToken} />
+					<ModalCustomerRegister loadCustomers={() => loadCustomers()} customer={customer} />
 				</Table.Cell>
 				<Table.Cell textAlign='center'>
 					<Icon link name='trash alternate outline' onClick={() => deleteCustomer(customer.id)} />
@@ -79,7 +78,7 @@ const Customer = ({accessToken}:Props) => {
 						{rows}
 					</Table.Body>
 				</Table>
-				<ModalCustomerRegister loadCustomers={() => loadCustomers()} customer={null} accessToken={accessToken} />
+				<ModalCustomerRegister loadCustomers={() => loadCustomers()} customer={null} />
 			</Container>
 		);
 	}
