@@ -16,11 +16,7 @@ const Customer = ({accessToken}:Props) => {
 
 	const loadCustomers = () => {
         let endpoint = CONTEXT_ENDPOINT + "api/customer";
-		axios.get(endpoint, {
-				headers: {
-					Authorization: `Bearer ${accessToken}`
-				}
-			}).then(res => {
+		axios.get(endpoint).then(res => {
             setCustomers(res.data)
         });
 	};
@@ -28,10 +24,7 @@ const Customer = ({accessToken}:Props) => {
 	const deleteCustomer = (id: string) => {
 		if(window.confirm(t("customer.delete_messaeg"))){
 			let endpoint = CONTEXT_ENDPOINT + "api/customer/delete/" + id;
-			fetch(endpoint, {cache:"no-cache", method:"DELETE",
-			headers: {
-				Authorization: `Bearer ${accessToken}`
-			}})
+			fetch(endpoint, {cache:"no-cache", method:"DELETE"})
 			.then( (response)=>{
 				loadCustomers()} )
 			.catch((reason)=>{

@@ -11,7 +11,7 @@ import { GoogleLogin } from 'react-google-login';
 import { useCookies } from "react-cookie";
 
 import "./i18n/configs"
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 import * as fetchIntercept from 'fetch-intercept';
 
@@ -20,6 +20,10 @@ function App() {
   const clientId:string = process.env.REACT_APP_CLIENT_ID == null? "": process.env.REACT_APP_CLIENT_ID ;
   const [cookies, setCookie] = useCookies(["react_access_token"]);
   const [accessToken, setAccessToken] = useState<string|null>(cookies.react_access_token);
+  axios.interceptors.request.use((config: AxiosRequestConfig) => {
+    config.headers = { Authorization: `Bearer ${accessToken}` }
+    return config
+  })
   axios.interceptors.response.use(
     response => response,
     error => {
@@ -37,6 +41,12 @@ function App() {
       fetchIntercept.clear();
     }else{
       fetchIntercept.register({
+        request: function(url, config) {
+          const modifiedHeaders = new Headers(config.headers);
+          modifiedHeaders.append('Authorization', `Bearer ${accessToken}`);
+          config.headers = modifiedHeaders;
+          return [url, config];
+        },
         response: (response) => {
           console.log(response);
           if (response.status === 401) {
@@ -45,7 +55,7 @@ function App() {
             setAccessToken(null);
           }
           return response;
-        }
+        },
       });  
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps

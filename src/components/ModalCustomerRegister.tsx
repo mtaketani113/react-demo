@@ -20,8 +20,7 @@ const ModalCustomerRegister = ({loadCustomers, customer, accessToken}: Props) =>
 		let address = document.querySelector<HTMLInputElement>("#customer_address")!.value;
 		fetch(endpoint, {cache:"no-cache", method:"PUT",
 			headers: {
-				'Content-Type': 'application/json; charset=utf-8',
-				'Authorization': `Bearer ${accessToken}`
+				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body : JSON.stringify({name : name, post: post, address: address})})
 		.then( (response)=>{
@@ -40,8 +39,7 @@ const ModalCustomerRegister = ({loadCustomers, customer, accessToken}: Props) =>
 		let address = document.querySelector<HTMLInputElement>("#customer_address")!.value;
 		fetch(endpoint, {cache:"no-cache", method:"POST",
 			headers: {
-				'Content-Type': 'application/json; charset=utf-8',
-				'Authorization': `Bearer ${accessToken}`
+				'Content-Type': 'application/json; charset=utf-8'
 			},
 			body : JSON.stringify({id : updateId, name : name, post: post, address: address})})
 		.then( (response)=>{

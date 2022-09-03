@@ -26,11 +26,7 @@ const HeaderMenu = ({accessToken, setCookie, setAccessToken}:Props) => {
 
   const loadUser = async () => {
     let endpoint = CONTEXT_ENDPOINT + "api/user?accessToken=" + accessToken;
-    axios.get(endpoint, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    }).then(res => {
+    axios.get(endpoint).then(res => {
       setUser(res.data)
     });
   };
