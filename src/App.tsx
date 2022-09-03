@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {Top, Customer, Map, Files} from './components/index';
 import './App.css';
 
@@ -12,6 +12,8 @@ import { useCookies } from "react-cookie";
 
 import "./i18n/configs"
 import axios from 'axios';
+
+import * as fetchIntercept from 'fetch-intercept';
 
 function App() {
 
@@ -29,6 +31,26 @@ function App() {
       return Promise.reject(error);
     }
   )
+
+  useEffect(() => {
+    if(accessToken == null){
+      fetchIntercept.clear();
+    }else{
+      fetchIntercept.register({
+        response: (response) => {
+          console.log(response);
+          if (response.status === 401) {
+            //Cookie削除
+            setCookie("react_access_token", null);
+            setAccessToken(null);
+          }
+          return response;
+        }
+      });  
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [accessToken]);
+  
   return (
     <React.Fragment>
       {accessToken == null ? (
