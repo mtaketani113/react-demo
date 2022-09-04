@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DropzoneRootProps, useDropzone } from 'react-dropzone';
 import { Icon, SemanticICONS, List } from 'semantic-ui-react';
+import {AdminAuth} from './index';
 
 const baseStyle = {
   display: 'flex',
@@ -129,7 +130,9 @@ const Files = () => {
         <a href={url}>
           <Icon name={fileClass} />{file.fileName}
         </a>
-        <Icon link name='trash alternate outline' onClick={() => deleteFile(file.id)} />
+        <AdminAuth>
+          <Icon link name='trash alternate outline' onClick={() => deleteFile(file.id)} />
+        </AdminAuth>
       </div>
     </List.Item>
   )});
