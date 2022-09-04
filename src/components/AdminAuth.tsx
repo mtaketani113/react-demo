@@ -1,5 +1,7 @@
+import { ReactNode } from 'react'
 
-const AdminAuth = (props:any) => {
+type Props = {children:ReactNode};
+const AdminAuth = (props:Props) => {
 
   //TODO 権限判定を追加
   const authorized:boolean = true;
