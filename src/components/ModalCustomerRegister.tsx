@@ -4,8 +4,8 @@ import { Button, Header, Image, Modal, Form } from 'semantic-ui-react'
 import { useTranslation } from "react-i18next";
 import { CustomerEntity } from "./entity/CustomerEntity";
 
-type Props = { loadCustomers:() => void, customer:CustomerEntity | null};
-const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
+type Props = { loadCustomers:(pageNum:number) => void, customer:CustomerEntity | null, pageNum:number};
+const ModalCustomerRegister = ({loadCustomers, customer, pageNum}: Props) => {
 
 	const { t } = useTranslation();
 
@@ -24,7 +24,7 @@ const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
 			},
 			body : JSON.stringify({name : name, post: post, address: address})})
 		.then( (response)=>{
-			loadCustomers()} )
+			loadCustomers(pageNum)} )
 		.catch((reason)=>{
 			console.log(reason);
 		}).finally(()=>{
@@ -43,7 +43,7 @@ const ModalCustomerRegister = ({loadCustomers, customer}: Props) => {
 			},
 			body : JSON.stringify({id : updateId, name : name, post: post, address: address})})
 		.then( (response)=>{
-			loadCustomers()} )
+			loadCustomers(pageNum)} )
 		.catch((reason)=>{
 			console.log(reason);
 		}).finally(()=>{
