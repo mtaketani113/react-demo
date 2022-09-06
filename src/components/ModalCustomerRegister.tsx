@@ -82,7 +82,7 @@ const ModalCustomerRegister = ({loadCustomers, customer, pageNum}: Props) => {
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
       open={open}
-      trigger={<Button circular>{buttonName}</Button>}
+      trigger={<Button circular data-testid={customer == null? 'addButton': 'changeButtons'}>{buttonName}</Button>}
     >
       <Modal.Header>{title}</Modal.Header>
       <Modal.Content image>
