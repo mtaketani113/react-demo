@@ -1,0 +1,39 @@
+name: Formatter
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - run: npm ci --legacy-peer-deps
+    - run: npm run build --if-present
+    - name: Git settings
+      run: |
+        git config --local user.name "mtaketani113"
+        git config --local user.email "47836003+mtaketani113@users.noreply.github.com"
+    - name: Code format
+      run: npm run format:fix
+    - name: Check for modified files
+      id: git-check
+      run: echo ::set-output name=modified::$(if git diff-index --quiet HEAD --; then echo "false"; else echo "true"; fi)
+    - name: Push
+      if: steps.git-check.outputs.modified == 'true'
+      run: |
+        git commit -am "Automated :Reformat source code."
+        git push
