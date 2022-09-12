@@ -21,7 +21,7 @@ services:
 
 # springアプリケーションのサービス
   spring:
-    image: mtaketani113/spring-boot-demo:0.0.9
+    image: mtaketani113/spring-boot-demo:0.0.10
     container_name: "spring"
     ports:
       - "8080:8080"
