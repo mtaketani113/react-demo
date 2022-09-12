@@ -1,27 +1,27 @@
 {
-    "customer": {
-      "name":   "Name",
-      "post":   "Post",
-      "address":"Address",
-      "add":    "Add",
-      "change": "Change",
-      "delete_messaeg": "Delete?",
-      "add_title": "Add",
-      "change_title": "Change",
-      "info": "Info",
-      "register": "Register",
-      "close": "Close"
+  "customer": {
+    "name": "Name",
+    "post": "Post",
+    "address": "Address",
+    "add": "Add",
+    "change": "Change",
+    "delete_messaeg": "Delete?",
+    "add_title": "Add",
+    "change_title": "Change",
+    "info": "Info",
+    "register": "Register",
+    "close": "Close"
+  },
+  "header": {
+    "menu": {
+      "title": "React Demo",
+      "home": "Home",
+      "customer": "Customer",
+      "map": "Map",
+      "file": "File"
     },
-    "header": {
-        "menu": {
-            "title":    "React Demo",
-            "home":     "Home",
-            "customer": "Customer",
-            "map":      "Map",
-            "file":     "File"
-        },
-        "language":"Language",
-        "en":"English",
-        "ja":"Japanese"
-    }
+    "language": "Language",
+    "en": "English",
+    "ja": "Japanese"
+  }
 }
