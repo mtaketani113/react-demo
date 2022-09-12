@@ -14,6 +14,7 @@ const Customer = () => {
 
   const CONTEXT_ENDPOINT = 'http://localhost:8080/demo/';
 
+  // 顧客一覧を取得
   const loadCustomers = (page: number) => {
     let endpoint = CONTEXT_ENDPOINT + 'api/customer';
     axios.get(endpoint).then((res) => {
@@ -26,6 +27,7 @@ const Customer = () => {
     });
   };
 
+  //　IDをキーに顧客を削除
   const deleteCustomer = (id: string) => {
     if (window.confirm(t('customer.delete_messaeg'))) {
       let endpoint = CONTEXT_ENDPOINT + 'api/customer/delete/' + id;
@@ -40,6 +42,7 @@ const Customer = () => {
     }
   };
 
+  // ページングの処理
   const pagingCustomers = (e: any, data: any) => {
     if (allCustomers != null) {
       let start = (data.activePage - 1) * 5;
