@@ -41,7 +41,10 @@ interface IFile {
 const Files = () => {
   const [files, setFiles] = useState<Array<FileForDropZone>>([]);
   const [fileList, setFileList] = useState<Array<IFile>>([]);
-  const CONTEXT_ENDPOINT = 'http://localhost:8080/demo/';
+  const CONTEXT_ENDPOINT =
+    process.env.REACT_APP_BACKGROUND_URL == null
+      ? 'http://localhost:8080/demo/'
+      : process.env.REACT_APP_BACKGROUND_URL;
   const onDrop = useCallback((acceptedFiles: Array<FileForDropZone>) => {
     console.log(acceptedFiles);
     let endpoint = CONTEXT_ENDPOINT + 'api/file';
