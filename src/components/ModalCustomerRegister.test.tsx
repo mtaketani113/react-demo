@@ -1,9 +1,5 @@
 import { cleanup, render, screen } from '@testing-library/react';
-import Customer from './Customer';
-import axios, { AxiosInstance } from 'axios';
 import userEvent from '@testing-library/user-event';
-import i18n from '../i18n/configs';
-import { I18nextProvider } from 'react-i18next';
 import ModalCustomerRegister from './ModalCustomerRegister';
 jest.mock('axios');
 
