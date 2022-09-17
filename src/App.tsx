@@ -13,10 +13,12 @@ import './i18n/configs';
 import axios, { AxiosRequestConfig } from 'axios';
 
 import * as fetchIntercept from 'fetch-intercept';
+import { Icon, Segment, TransitionablePortal } from 'semantic-ui-react';
 
 function App() {
   const [cookies, setCookie] = useCookies(['react_access_token']);
   const [accessToken, setAccessToken] = useState<string | null>(cookies.react_access_token);
+  const [openError, setOpenError] = useState<boolean>(false);
   axios.interceptors.request.use((config: AxiosRequestConfig) => {
     config.headers = { Authorization: `Bearer ${accessToken}` };
     return config;
@@ -29,6 +31,10 @@ function App() {
         setCookie('react_access_token', null);
         setAccessToken(null);
       }
+      setOpenError(true);
+      setTimeout(() => {
+        setOpenError(false);
+      }, 3000);
       return Promise.reject(error);
     },
   );
@@ -74,6 +80,14 @@ function App() {
             </Routes>
           </BrowserRouter>
           <FooterMenu />
+          <TransitionablePortal open={openError}>
+            <Segment style={{ left: '40%', position: 'fixed', top: '10%', zIndex: 1000 }}>
+              <p>
+                <Icon color="red" name="exclamation triangle" />
+                エラーが発生しました。
+              </p>
+            </Segment>
+          </TransitionablePortal>
         </>
       )}
     </React.Fragment>
