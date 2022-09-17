@@ -1,5 +1,14 @@
 import { useState } from 'react';
-import { Button, Header, Image, Modal, Form, Segment, TransitionablePortal, Icon } from 'semantic-ui-react';
+import {
+  Button,
+  Header,
+  Image,
+  Modal,
+  Form,
+  Segment,
+  TransitionablePortal,
+  Icon,
+} from 'semantic-ui-react';
 
 import { useTranslation } from 'react-i18next';
 import { CustomerEntity } from './entity/CustomerEntity';
@@ -33,7 +42,7 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
       .then((response) => {
         loadCustomers(pageNum);
         setOpenComp(true);
-        setTimeout(()=>{
+        setTimeout(() => {
           setOpenComp(false);
         }, 3000);
       })
@@ -61,7 +70,7 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
       .then((response) => {
         loadCustomers(pageNum);
         setOpenComp(true);
-        setTimeout(()=>{
+        setTimeout(() => {
           setOpenComp(false);
         }, 3000);
       })
@@ -100,74 +109,75 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
 
   return (
     <>
-    <Modal
-      onClose={() => setOpen(false)}
-      onOpen={() => setOpen(true)}
-      open={open}
-      trigger={
-        <Button circular data-testid={customer == null ? 'addButton' : 'changeButtons'}>
-          {buttonName}
-        </Button>
-      }
-    >
-      <Modal.Header>{title}</Modal.Header>
-      <Modal.Content image>
-        <Image
-          size="medium"
-          src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
-          wrapped
-        />
-        <Modal.Description>
-          <Header>{t('customer.info')}</Header>
-          <Form>
-            <Form.Field>
-              <label>{t('customer.name')}</label>
-              <input
-                id="customer_name"
-                placeholder={t('customer.name')}
-                defaultValue={customerName}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label>{t('customer.post')}</label>
-              <input
-                id="customer_post"
-                placeholder={t('customer.post')}
-                defaultValue={customerPost}
-              />
-            </Form.Field>
-            <Form.Field>
-              <label>{t('customer.address')}</label>
-              <input
-                id="customer_address"
-                placeholder={t('customer.address')}
-                defaultValue={customerAddress}
-              />
-            </Form.Field>
-          </Form>
-        </Modal.Description>
-      </Modal.Content>
-      <Modal.Actions>
-        <Button color="black" onClick={() => setOpen(false)}>
-          {t('customer.close')}
-        </Button>
-        <Button
-          content={t('customer.register')}
-          labelPosition="right"
-          icon="checkmark"
-          onClick={() => register()}
-          positive
-        />
-      </Modal.Actions>
-    </Modal>
-          <TransitionablePortal open={openComp}>
-          <Segment
-            style={{ left: '40%', position: 'fixed', top: '10%', zIndex: 1000 }}
-          >
-            <p><Icon color='green' name='check' />保存しました。</p>
-          </Segment>
-        </TransitionablePortal>
-        </>
+      <Modal
+        onClose={() => setOpen(false)}
+        onOpen={() => setOpen(true)}
+        open={open}
+        trigger={
+          <Button circular data-testid={customer == null ? 'addButton' : 'changeButtons'}>
+            {buttonName}
+          </Button>
+        }
+      >
+        <Modal.Header>{title}</Modal.Header>
+        <Modal.Content image>
+          <Image
+            size="medium"
+            src="https://react.semantic-ui.com/images/avatar/large/rachel.png"
+            wrapped
+          />
+          <Modal.Description>
+            <Header>{t('customer.info')}</Header>
+            <Form>
+              <Form.Field>
+                <label>{t('customer.name')}</label>
+                <input
+                  id="customer_name"
+                  placeholder={t('customer.name')}
+                  defaultValue={customerName}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>{t('customer.post')}</label>
+                <input
+                  id="customer_post"
+                  placeholder={t('customer.post')}
+                  defaultValue={customerPost}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>{t('customer.address')}</label>
+                <input
+                  id="customer_address"
+                  placeholder={t('customer.address')}
+                  defaultValue={customerAddress}
+                />
+              </Form.Field>
+            </Form>
+          </Modal.Description>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button color="black" onClick={() => setOpen(false)}>
+            {t('customer.close')}
+          </Button>
+          <Button
+            content={t('customer.register')}
+            labelPosition="right"
+            icon="checkmark"
+            onClick={() => register()}
+            positive
+          />
+        </Modal.Actions>
+      </Modal>
+      <TransitionablePortal open={openComp}>
+        <Segment style={{ left: '40%', position: 'fixed', top: '10%', zIndex: 1000 }}>
+          <p>
+            <Icon color="green" name="check" />
+            保存しました。
+          </p>
+        </Segment>
+      </TransitionablePortal>
+    </>
   );
 };
 export default ModalCustomerRegister;
