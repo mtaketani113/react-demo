@@ -12,8 +12,10 @@ const Customer = () => {
   const [allCustomers, setAllCustomers] = useState<Array<CustomerEntity> | null>(null);
   const [pageNum, setPageNum] = useState(1);
 
-  const CONTEXT_ENDPOINT = 'http://localhost:8080/demo/';
-
+  const CONTEXT_ENDPOINT =
+    process.env.REACT_APP_BACKGROUND_URL == null
+      ? 'http://localhost:8080/demo/'
+      : process.env.REACT_APP_BACKGROUND_URL;
   // 顧客一覧を取得
   const loadCustomers = (page: number) => {
     let endpoint = CONTEXT_ENDPOINT + 'api/customer';

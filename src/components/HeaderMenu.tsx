@@ -15,7 +15,10 @@ const HeaderMenu = ({ accessToken }: Props) => {
     i18n.changeLanguage(lang);
   };
 
-  const CONTEXT_ENDPOINT = 'http://localhost:8080/demo/';
+  const CONTEXT_ENDPOINT =
+    process.env.REACT_APP_BACKGROUND_URL == null
+      ? 'http://localhost:8080/demo/'
+      : process.env.REACT_APP_BACKGROUND_URL;
 
   const loadUser = async () => {
     let endpoint = CONTEXT_ENDPOINT + 'api/user?accessToken=' + accessToken;
