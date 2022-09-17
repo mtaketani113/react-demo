@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Header, Image, Modal, Form } from 'semantic-ui-react';
+import { Button, Header, Image, Modal, Form, Segment, TransitionablePortal, Icon } from 'semantic-ui-react';
 
 import { useTranslation } from 'react-i18next';
 import { CustomerEntity } from './entity/CustomerEntity';
@@ -13,6 +13,7 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
   const { t } = useTranslation();
 
   const [open, setOpen] = useState<boolean>(false);
+  const [openComp, setOpenComp] = useState<boolean>(false);
 
   const CONTEXT_ENDPOINT = 'http://localhost:8080/demo/';
 
@@ -31,6 +32,10 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
     })
       .then((response) => {
         loadCustomers(pageNum);
+        setOpenComp(true);
+        setTimeout(()=>{
+          setOpenComp(false);
+        }, 3000);
       })
       .catch((reason) => {
         console.log(reason);
@@ -55,6 +60,10 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
     })
       .then((response) => {
         loadCustomers(pageNum);
+        setOpenComp(true);
+        setTimeout(()=>{
+          setOpenComp(false);
+        }, 3000);
       })
       .catch((reason) => {
         console.log(reason);
@@ -90,6 +99,7 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
   }
 
   return (
+    <>
     <Modal
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)}
@@ -150,6 +160,14 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
         />
       </Modal.Actions>
     </Modal>
+          <TransitionablePortal open={openComp}>
+          <Segment
+            style={{ left: '40%', position: 'fixed', top: '10%', zIndex: 1000 }}
+          >
+            <p><Icon color='green' name='check' />保存しました。</p>
+          </Segment>
+        </TransitionablePortal>
+        </>
   );
 };
 export default ModalCustomerRegister;
