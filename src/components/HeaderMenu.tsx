@@ -8,7 +8,7 @@ import { useCookies } from 'react-cookie';
 
 type Props = { accessToken: string };
 const HeaderMenu = ({ accessToken }: Props) => {
-  const [cookies, setCookie] = useCookies(["lang"]);
+  const [cookies, setCookie] = useCookies(['lang']);
 
   const { t } = useTranslation();
 
@@ -17,7 +17,7 @@ const HeaderMenu = ({ accessToken }: Props) => {
   const maxAge: number = 60 * 60 * 24 * 1;
   const translate = (lang: string) => {
     i18n.changeLanguage(lang);
-    setCookie("lang", lang, {maxAge: maxAge});
+    setCookie('lang', lang, { maxAge: maxAge });
   };
 
   const CONTEXT_ENDPOINT =
@@ -34,7 +34,7 @@ const HeaderMenu = ({ accessToken }: Props) => {
 
   useEffect(() => {
     loadUser();
-    if(cookies.lang != null){
+    if (cookies.lang != null) {
       i18n.changeLanguage(cookies.lang);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
