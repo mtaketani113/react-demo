@@ -8,13 +8,19 @@ import { useCookies } from 'react-cookie';
 
 type Props = { accessToken: string };
 const HeaderMenu = ({ accessToken }: Props) => {
-  const [cookies, setCookie] = useCookies(['lang']);
+  const [cookies, setCookie] = useCookies(['lang']); // 日英切替のCookie情報。初期表示時に利用
 
   const { t } = useTranslation();
 
   const [user, setUser] = useState<UserEntity | null>(null);
 
   const maxAge: number = 60 * 60 * 24 * 1;
+
+  /**
+   * 日英切り替え時
+   *
+   * @param lang 表示する言語（ja:日本語 en:英語）
+   */
   const translate = (lang: string) => {
     i18n.changeLanguage(lang);
     setCookie('lang', lang, { maxAge: maxAge });
@@ -64,7 +70,9 @@ const HeaderMenu = ({ accessToken }: Props) => {
           <Dropdown item simple text={t('header.language')}>
             <Dropdown.Menu>
               <Dropdown.Item onClick={() => translate('ja')}>{t('header.ja')}</Dropdown.Item>
+              {/* 日本語切替 */}
               <Dropdown.Item onClick={() => translate('en')}>{t('header.en')}</Dropdown.Item>
+              {/* 英語切替 */}
             </Dropdown.Menu>
           </Dropdown>
         </Menu.Menu>

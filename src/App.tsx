@@ -75,13 +75,16 @@ function App() {
           <HeaderMenu accessToken={accessToken} />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Top />} />
-              <Route path="/customer" element={<Customer />} />
-              <Route path="/map" element={<Map />} />
-              <Route path="/files" element={<Files />} />
+              <Route path="/" element={<Top />} /> {/* トップ */}
+              <Route path="/customer" element={<Customer />} /> {/* 顧客一覧 */}
+              <Route path="/map" element={<Map />} /> {/* 地図 */}
+              <Route path="/files" element={<Files />} /> {/* ファイル */}
             </Routes>
           </BrowserRouter>
           <FooterMenu />
+          {/*
+            処理失敗時のメッセージ表示部
+           */}
           <TransitionablePortal open={openError}>
             <Segment style={{ left: '40%', position: 'fixed', top: '10%', zIndex: 1000 }}>
               <p>

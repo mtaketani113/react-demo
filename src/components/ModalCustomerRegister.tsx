@@ -13,6 +13,9 @@ import {
 import { useTranslation } from 'react-i18next';
 import { CustomerEntity } from './entity/CustomerEntity';
 
+/**
+ * 顧客追加、更新のモーダル画面
+ */
 type Props = {
   loadCustomers: (pageNum: number) => void;
   customer: CustomerEntity | null;
@@ -21,11 +24,14 @@ type Props = {
 const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
   const { t } = useTranslation();
 
-  const [open, setOpen] = useState<boolean>(false);
-  const [openComp, setOpenComp] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false); // モーダル画面の表示、非表示のuseState Hook
+  const [openComp, setOpenComp] = useState<boolean>(false); // 保存完了メッセージの表示、非表示のuseState Hook
 
-  const CONTEXT_ENDPOINT = 'http://localhost:8080/demo/';
+  const CONTEXT_ENDPOINT = 'http://localhost:8080/demo/'; // バックエンドのEndPoint
 
+  /**
+   * 顧客追加のメソッド
+   */
   const addCustomer = () => {
     let endpoint = CONTEXT_ENDPOINT + 'api/customer/new';
     let name = document.querySelector<HTMLInputElement>('#customer_name')!.value;
@@ -54,6 +60,9 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
       });
   };
 
+  /**
+   * 顧客更新のメソッド
+   */
   const updateCustomer = (updateId: string) => {
     let endpoint = CONTEXT_ENDPOINT + 'api/customer/update';
     let name = document.querySelector<HTMLInputElement>('#customer_name')!.value;
@@ -97,9 +106,11 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
   let customerAddress: any;
 
   if (customer == null || customer.id == null || customer.id === '') {
+    // 顧客情報が渡ってこない場合は、新規追加とみなす。
     title = t('customer.add_title');
     buttonName = t('customer.add');
   } else {
+    // 顧客情報が渡ってくる場合は、変更とみなす。
     title = t('customer.change_title');
     buttonName = t('customer.change');
     customerName = customer.name;
@@ -160,6 +171,7 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
           <Button color="black" onClick={() => setOpen(false)}>
             {t('customer.close')}
           </Button>
+          {/* モーダルを閉じるボタン */}
           <Button
             content={t('customer.register')}
             labelPosition="right"
@@ -167,8 +179,12 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
             onClick={() => register()}
             positive
           />
+          {/* 入力内容を登録するボタン */}
         </Modal.Actions>
       </Modal>
+      {/*
+        保存完了時のメッセージ表示部
+      */}
       <TransitionablePortal open={openComp}>
         <Segment style={{ left: '40%', position: 'fixed', top: '10%', zIndex: 1000 }}>
           <p>
