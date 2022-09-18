@@ -31,7 +31,7 @@ const Customer = () => {
 
   //　IDをキーに顧客を削除
   const deleteCustomer = (id: string) => {
-    if (window.confirm(t('customer.delete_messaeg'))) {
+    if (window.confirm(t('message.confirm.delete'))) {
       let endpoint = CONTEXT_ENDPOINT + 'api/customer/delete/' + id;
       fetch(endpoint, { cache: 'no-cache', method: 'DELETE' })
         .then((response) => {

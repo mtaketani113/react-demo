@@ -173,7 +173,7 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
         <Segment style={{ left: '40%', position: 'fixed', top: '10%', zIndex: 1000 }}>
           <p>
             <Icon color="green" name="check circle" />
-            保存しました。
+            {t('message.save')}
           </p>
         </Segment>
       </TransitionablePortal>

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DropzoneRootProps, useDropzone } from 'react-dropzone';
+import { useTranslation } from 'react-i18next';
 import { Icon, SemanticICONS, List } from 'semantic-ui-react';
 import { AdminAuth } from './index';
 
@@ -39,6 +40,7 @@ interface IFile {
 }
 
 const Files = () => {
+  const { t } = useTranslation();
   const [files, setFiles] = useState<Array<FileForDropZone>>([]);
   const [fileList, setFileList] = useState<Array<IFile>>([]);
   const CONTEXT_ENDPOINT =
@@ -86,7 +88,7 @@ const Files = () => {
   };
 
   const deleteFile = (id: string) => {
-    if (window.confirm('削除しますか?')) {
+    if (window.confirm(t('message.confirm.delete'))) {
       let endpoint = CONTEXT_ENDPOINT + 'api/file/delete/' + id;
       fetch(endpoint, { cache: 'no-cache', method: 'DELETE' })
         .then((response) => {

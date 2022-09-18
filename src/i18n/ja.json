@@ -5,7 +5,6 @@
     "address": "住所",
     "add": "追加",
     "change": "変更",
-    "delete_messaeg": "削除しますか?",
     "add_title": "顧客登録",
     "change_title": "顧客更新",
     "info": "登録情報",
@@ -23,5 +22,12 @@
     "language": "言語",
     "en": "英語",
     "ja": "日本語"
+  },
+  "message": {
+    "save": "保存しました。",
+    "error": "エラーが発生しました。",
+    "confirm": {
+      "delete": "削除しますか？"
+    }
   }
 }

@@ -14,8 +14,10 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import * as fetchIntercept from 'fetch-intercept';
 import { Icon, Segment, TransitionablePortal } from 'semantic-ui-react';
+import { useTranslation } from 'react-i18next';
 
 function App() {
+  const { t } = useTranslation();
   const [cookies, setCookie] = useCookies(['react_access_token']);
   const [accessToken, setAccessToken] = useState<string | null>(cookies.react_access_token);
   const [openError, setOpenError] = useState<boolean>(false);
@@ -84,7 +86,7 @@ function App() {
             <Segment style={{ left: '40%', position: 'fixed', top: '10%', zIndex: 1000 }}>
               <p>
                 <Icon color="red" name="exclamation triangle" />
-                エラーが発生しました。
+                {t('message.error')}
               </p>
             </Segment>
           </TransitionablePortal>

@@ -5,7 +5,6 @@
     "address": "Address",
     "add": "Add",
     "change": "Change",
-    "delete_messaeg": "Delete?",
     "add_title": "Add",
     "change_title": "Change",
     "info": "Info",
@@ -23,5 +22,12 @@
     "language": "Language",
     "en": "English",
     "ja": "Japanese"
+  },
+  "message": {
+    "save": "save.",
+    "error": "An error has occurred.",
+    "confirm": {
+      "delete": "Delete?"
+    }
   }
 }
