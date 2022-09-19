@@ -89,7 +89,7 @@ const Files = () => {
 
   const deleteFile = (id: string) => {
     if (window.confirm(t('message.confirm.delete'))) {
-      let endpoint = CONTEXT_ENDPOINT + 'api/file/delete/' + id;
+      let endpoint = CONTEXT_ENDPOINT + 'api/file/delete?id=' + id;
       fetch(endpoint, { cache: 'no-cache', method: 'DELETE' })
         .then((response) => {
           loadfileList();
@@ -127,7 +127,7 @@ const Files = () => {
       fileClass = 'file outline';
     }
 
-    let url = 'http://localhost:8080/demo/api/file/' + file.id;
+    let url = 'http://localhost:8080/demo/api/file/donwload?id=' + file.id;
     return (
       <List.Item>
         <div>
