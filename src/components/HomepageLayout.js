@@ -216,7 +216,7 @@ class MobileContainer extends Component {
                     <GoogleLogin
                       clientId={clientId}
                       render={(renderProps) => (
-                        <Button as="a" inverted>
+                        <Button as="a" inverted onClick={renderProps.onClick}>
                           Log in
                         </Button>
                       )}
