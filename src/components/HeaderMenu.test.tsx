@@ -42,5 +42,7 @@ describe('HeaderMenu', () => {
     expect(mapButtonJa).toBeInTheDocument();
     const customerButtonJa = await screen.findByText('顧客一覧');
     expect(customerButtonJa).toBeInTheDocument();
+    const fileButtonJa = await screen.findByText('ファイル');
+    expect(fileButtonJa).toBeInTheDocument();
   });
 });
