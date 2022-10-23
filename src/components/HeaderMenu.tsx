@@ -65,6 +65,9 @@ const HeaderMenu = ({ accessToken }: Props) => {
         <Menu.Item as="a" href="/files">
           {t('header.menu.file')}
         </Menu.Item>
+        <Menu.Item as="a" href="/graph">
+          {t('header.menu.graph')}
+        </Menu.Item>
 
         <Menu.Menu position="right">
           <Dropdown item simple text={t('header.language')}>

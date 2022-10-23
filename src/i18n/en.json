@@ -17,7 +17,8 @@
       "home": "Home",
       "customer": "Customer",
       "map": "Map",
-      "file": "File"
+      "file": "File",
+      "graph": "Graph"  
     },
     "language": "Language",
     "en": "English",
