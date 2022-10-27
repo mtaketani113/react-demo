@@ -7,3 +7,4 @@ export { default as Map } from './Map';
 export { default as Files } from './Files';
 export { default as AdminAuth } from './AdminAuth';
 export { default as HomepageLayout } from './HomepageLayout';
+export { default as Graph } from './Graph';
