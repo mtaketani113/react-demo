@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Top, Customer, Map, Files, HomepageLayout } from './components/index';
+import { Top, Customer, Map, Files, HomepageLayout, Graph } from './components/index';
 import './App.css';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -79,6 +79,7 @@ function App() {
               <Route path="/customer" element={<Customer />} /> {/* 顧客一覧 */}
               <Route path="/map" element={<Map />} /> {/* 地図 */}
               <Route path="/files" element={<Files />} /> {/* ファイル */}
+              <Route path="/graph" element={<Graph />} /> {/* グラフ */}
             </Routes>
           </BrowserRouter>
           <FooterMenu />
