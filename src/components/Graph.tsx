@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,10 +11,26 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { Container } from 'semantic-ui-react';
+import { GraphEntity } from './entity/GraphEntity';
+import axios from 'axios';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const Graph = () => {
+
+  const [data2, setData] = useState<Array<GraphEntity>>([]);
+
+  const loadGraph = () => {
+    axios.get("http://localhost:3000/weight.json").then((res) => {
+      setData(res.data);
+    });
+  }
+
+  useEffect(() => {
+    loadGraph();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const options = {
     responsive: true,
     plugins: {
@@ -25,14 +41,14 @@ const Graph = () => {
     },
   };
 
-  const labels = ['2022/10/27', '2022/10/28'];
+  const labels = data2.map(data => data.date);
 
   const graphData = {
     labels,
     datasets: [
       {
         label: '体重',
-        data: [70.1, 70.0],
+        data: data2.map(data => data.weight),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
