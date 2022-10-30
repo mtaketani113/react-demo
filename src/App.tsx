@@ -72,7 +72,7 @@ function App() {
         <HomepageLayout setAccessToken={setAccessToken} setCookie={setCookie} />
       ) : (
         <>
-          <HeaderMenu accessToken={accessToken} />
+          <HeaderMenu accessToken={accessToken} /> {/* ヘッダー */}
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Top />} /> {/* トップ */}
@@ -82,7 +82,7 @@ function App() {
               <Route path="/graph" element={<Graph />} /> {/* グラフ */}
             </Routes>
           </BrowserRouter>
-          <FooterMenu />
+          <FooterMenu /> {/* フッター */}
           {/*
             処理失敗時のメッセージ表示部
            */}
