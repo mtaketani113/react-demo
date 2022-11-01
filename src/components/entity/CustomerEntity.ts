@@ -1,5 +1,5 @@
 export interface CustomerEntity {
-  id: string;
+  id: number;
   name: string;
   post: string;
   address: string;

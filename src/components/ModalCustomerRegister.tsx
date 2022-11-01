@@ -63,7 +63,7 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
   /**
    * 顧客更新のメソッド
    */
-  const updateCustomer = (updateId: string) => {
+  const updateCustomer = (updateId: number) => {
     let endpoint = CONTEXT_ENDPOINT + 'api/customer/update';
     let name = document.querySelector<HTMLInputElement>('#customer_name')!.value;
     let post = document.querySelector<HTMLInputElement>('#customer_post')!.value;
@@ -92,7 +92,7 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
   };
 
   const register = () => {
-    if (customer == null || customer.id == null || customer.id === '') {
+    if (customer == null || customer.id == null) {
       addCustomer();
     } else {
       updateCustomer(customer.id);
@@ -105,7 +105,7 @@ const ModalCustomerRegister = ({ loadCustomers, customer, pageNum }: Props) => {
   let customerPost: any;
   let customerAddress: any;
 
-  if (customer == null || customer.id == null || customer.id === '') {
+  if (customer == null || customer.id == null) {
     // 顧客情報が渡ってこない場合は、新規追加とみなす。
     title = t('customer.add_title');
     buttonName = t('customer.add');
