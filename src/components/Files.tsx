@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DropzoneRootProps, useDropzone } from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import { Icon, SemanticICONS, List } from 'semantic-ui-react';
-import { CONTEXT_ENDPOINT } from './constants';
+import { CONTEXT_ENDPOINT } from './Constants';
 import { AdminAuth } from './index';
 
 const baseStyle = {

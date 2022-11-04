@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { CustomerEntity } from './entity/CustomerEntity';
 import axios from 'axios';
 import _ from 'lodash'
-import { CONTEXT_ENDPOINT } from './constants';
+import { CONTEXT_ENDPOINT } from './Constants';
 
 const Customer = () => {
 

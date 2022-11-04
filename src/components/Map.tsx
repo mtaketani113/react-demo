@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { Tab } from 'semantic-ui-react';
-import { API_KEY } from './constants';
+import { API_KEY } from './Constants';
 
 interface Position {
   lat: number;

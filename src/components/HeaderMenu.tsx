@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { UserEntity } from './entity/UserEntity';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import { CONTEXT_ENDPOINT } from './constants';
+import { CONTEXT_ENDPOINT } from './Constants';
 
 type Props = { accessToken: string };
 const HeaderMenu = ({ accessToken }: Props) => {
