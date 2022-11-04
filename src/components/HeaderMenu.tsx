@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { UserEntity } from './entity/UserEntity';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import { CONTEXT_ENDPOINT } from './constants';
 
 type Props = { accessToken: string };
 const HeaderMenu = ({ accessToken }: Props) => {
@@ -25,11 +26,6 @@ const HeaderMenu = ({ accessToken }: Props) => {
     i18n.changeLanguage(lang);
     setCookie('lang', lang, { maxAge: maxAge });
   };
-
-  const CONTEXT_ENDPOINT =
-    process.env.REACT_APP_BACKGROUND_URL == null
-      ? 'http://localhost:8080/demo/'
-      : process.env.REACT_APP_BACKGROUND_URL;
 
   const loadUser = async () => {
     let endpoint = CONTEXT_ENDPOINT + 'api/user?accessToken=' + accessToken;
@@ -67,6 +63,9 @@ const HeaderMenu = ({ accessToken }: Props) => {
         </Menu.Item>
         <Menu.Item as="a" href="/graph">
           {t('header.menu.graph')}
+        </Menu.Item>
+        <Menu.Item as="a" href="/calendar">
+          カレンダー
         </Menu.Item>
 
         <Menu.Menu position="right">

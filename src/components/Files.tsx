@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { DropzoneRootProps, useDropzone } from 'react-dropzone';
 import { useTranslation } from 'react-i18next';
 import { Icon, SemanticICONS, List } from 'semantic-ui-react';
+import { CONTEXT_ENDPOINT } from './constants';
 import { AdminAuth } from './index';
 
 const baseStyle = {
@@ -43,10 +44,7 @@ const Files = () => {
   const { t } = useTranslation();
   const [files, setFiles] = useState<Array<FileForDropZone>>([]);
   const [fileList, setFileList] = useState<Array<IFile>>([]);
-  const CONTEXT_ENDPOINT =
-    process.env.REACT_APP_BACKGROUND_URL == null
-      ? 'http://localhost:8080/demo/'
-      : process.env.REACT_APP_BACKGROUND_URL;
+
   const onDrop = useCallback((acceptedFiles: Array<FileForDropZone>) => {
     console.log(acceptedFiles);
     let endpoint = CONTEXT_ENDPOINT + 'api/file';

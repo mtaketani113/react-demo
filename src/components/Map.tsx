@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { Tab } from 'semantic-ui-react';
+import { API_KEY } from './constants';
 
 interface Position {
   lat: number;
@@ -46,8 +47,6 @@ const Map = () => {
     lng: 136.8816945,
   };
 
-  const API_KEY =
-    process.env.REACT_APP_MAP_API_KEY == null ? '' : process.env.REACT_APP_MAP_API_KEY;
   const panes = [
     {
       menuItem: '現在地',

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { CustomerEntity } from './entity/CustomerEntity';
 import axios from 'axios';
 import _ from 'lodash'
+import { CONTEXT_ENDPOINT } from './constants';
 
 const Customer = () => {
 
@@ -58,10 +59,6 @@ const Customer = () => {
 
   const { column, allCustomers, direction }:STATE = state
   
-  const CONTEXT_ENDPOINT =
-    process.env.REACT_APP_BACKGROUND_URL == null
-      ? 'http://localhost:8080/demo/'
-      : process.env.REACT_APP_BACKGROUND_URL;
   // 顧客一覧を取得
   const loadCustomers = (page: number) => {
     let endpoint = CONTEXT_ENDPOINT + 'api/customer';
